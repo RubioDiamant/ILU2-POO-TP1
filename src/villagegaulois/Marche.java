@@ -9,6 +9,9 @@ public class Marche {
 	public Marche(int nombreEtals) {
 		etals = new Etal[nombreEtals];
 		nbEtal = nombreEtals;
+		for(int i = 0; i<nbEtal; i++) {
+			etals[i] = new Etal();
+		}
 	}
 	
 	public int getNbEtals() {
