@@ -42,9 +42,11 @@ public class Marche {
 		int indice = 0;
 		Etal etalVente[] = new Etal[etals.length];
 		for(int i = 0; i<etals.length; i++) {
-			if(etals[i].contientProduit(produit)){
-				etalVente[indice] = etals[i];
-				indice++;
+			if(etals[i].isEtalOccupe()) {
+				if(etals[i].contientProduit(produit)){
+					etalVente[indice] = etals[i];
+					indice++;
+				}
 			}
 		}
 		return etalVente;
@@ -59,19 +61,21 @@ public class Marche {
 		return null;
 	}
 	
-	public void afficherMarche() {
+	public String afficherMarche() {
 		int etalVide = 0;
+		StringBuilder chaine = new StringBuilder();
 		for(int i = 0; i<etals.length; i++) {
 			if(etals[i].isEtalOccupe()) {
-				etals[i].afficherEtal();
+				chaine.append(etals[i].afficherEtal());
 			}
 			else{
 				etalVide++;
 			}
 		}
 		if(etalVide != 0) {
-			System.out.println("Il reste " + etalVide + " étals non utilisés dans le marché.\n");
+			chaine.append("Il reste " + etalVide + " ï¿½tals non utilisï¿½s dans le marchï¿½.\n");
 		}
+		return chaine.toString();
 	}
 		
 }
