@@ -5,6 +5,7 @@ import personnages.Druide;
 import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
+import villagegaulois.VillageSansChefException;
 
 public class ScenarioTestException {
 	
@@ -36,6 +37,13 @@ public class ScenarioTestException {
 			Etal etal4 = new Etal();
 			etal4.acheterProduit(5, new Gaulois("Obelix", 10));
 		} catch(IllegalStateException e){
+			System.err.println(e.getMessage());
+		}
+		
+		try {
+			Village village = new Village("Village", 10, 15);
+			System.out.println(village.afficherVillageois());
+		}catch(VillageSansChefException e) {
 			System.err.println(e.getMessage());
 		}
 		
