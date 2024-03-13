@@ -10,28 +10,34 @@ public class ScenarioTestException {
 	
 	
 	public static void main(String[] args) {
-		Village village = new Village("Village Gaulois", 10, 5);
-		Etal etal = new Etal();
-		etal.libererEtal();
+		try{
+			Etal etal1 = new Etal();
+			etal1.libererEtal();
+		}catch(NullPointerException e) {
+			System.err.println(e.getMessage());
+		}
 		
-		Chef abraracourcix = new Chef("Abraracourcix", 10, village);
-		village.setChef(abraracourcix);
-		Druide druide = new Druide("Panoramix", 2, 5, 10);
-		Gaulois obelix = null;
-		Gaulois asterix = new Gaulois("Astérix", 8);
-		Gaulois assurancetourix = new Gaulois("Assurancetourix", 2);
-		Gaulois bonemine = new Gaulois("Bonemine", 7);
 		
-		village.ajouterHabitant(bonemine);
-		village.ajouterHabitant(assurancetourix);
-		village.ajouterHabitant(asterix);
-		village.ajouterHabitant(obelix);
-		village.ajouterHabitant(druide);
-		village.ajouterHabitant(abraracourcix);
+		try {
+			Etal etal2 = new Etal();
+			etal2.acheterProduit(5, null);
+		} catch(NullPointerException e){
+			System.err.println(e.getMessage());
+		}
 		
-		village.installerVendeur(bonemine, "Bonbon", 10);
-		Etal etalBb = village.rechercherEtal(bonemine);
-	    System.out.println(etalBb.acheterProduit(5, obelix));
+		try {
+			Etal etal3 = new Etal();
+			etal3.acheterProduit(-5, new Gaulois("Asterix", 10));
+		} catch(IllegalArgumentException e){
+			System.err.println(e.getMessage());
+		}
+		
+		try {
+			Etal etal4 = new Etal();
+			etal4.acheterProduit(5, new Gaulois("Obelix", 10));
+		} catch(IllegalStateException e){
+			System.err.println(e.getMessage());
+		}
 		
 		
 		System.out.println("Fin du test\n");

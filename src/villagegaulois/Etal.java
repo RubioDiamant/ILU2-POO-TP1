@@ -48,6 +48,15 @@ public class Etal {
 	}
 
 	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
+		if(acheteur == null) {
+			throw new NullPointerException("Acheteur null !\n");
+		}
+		if(quantiteAcheter < 1) {
+			throw new IllegalArgumentException("Quantite negative\n");
+		}
+		if(!etalOccupe) {
+			throw new IllegalStateException("L'etal est vide\n");
+		}
 		StringBuilder chaine = new StringBuilder();
 		chaine.append(
 				acheteur.getNom() + " veut acheter " + quantiteAcheter + " " + produit + " à " + vendeur.getNom());
